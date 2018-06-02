@@ -1,5 +1,6 @@
-# Software-Design-Patterns
+# Project Template
 
+This is a Java Maven Project Template
 
 # How to compile
 
