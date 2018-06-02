@@ -4,14 +4,17 @@ This is a Java Maven Project Template
 
 # How to compile
 
-
+```shell
 mvn clean compile
-
+```
 
 # How to create a binary runable package 
 
-
+```shell
 mvn clean compile assembly:single
+```
+
+
 
 or 
 
