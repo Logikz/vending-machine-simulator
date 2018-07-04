@@ -1,41 +1,46 @@
-# Project Template
+# CS665 Summer 2018 Assignment 1
 
-This is a Java Maven Project Template
+This is assignment 1 for CS665 Summer 2018.  The following readme can be used to guide the user 
+to install and run the application using Java.  
+
+-Nick Cuneo
 
 
+# Setup
+ 
+You need to install Apache Maven (https://maven.apache.org/)  on your system.
 
-# How to compile the project
+# Compilation 
 
-We use Apache Maven to compile and run this project. 
+Compilation and packaging is done with maven, and is easily ran from windows or linux with one of
+the following scripts.
 
-You need to install Apache Maven (https://maven.apache.org/)  on your system. 
-
-Type on the command line: 
-
+## Windows
 ```bash
-mvn clean compile
+compile.bat
 ```
 
-# How to create a binary runable package 
-
+## Linux
 
 ```bash
-mvn clean compile assembly:single
+./compile.sh
 ```
 
 
-# How to run
+# Running
 
+The application can be ran by executing one of the following scripts on windows or linux.
+
+## Windows
 
 ```bash
-java -classpath target/Example-1-1.0-SNAPSHOT-jar-with-dependencies.jar edu.bu.met.cs665.Main
+run.bat
 ```
 
-or
-
+## Linux
 
 ```bash
-run.sh 
+./run.sh 
 ```
 
 # Using Findbugs 
