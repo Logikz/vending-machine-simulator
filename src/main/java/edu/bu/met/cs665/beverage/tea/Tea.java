@@ -2,8 +2,11 @@ package edu.bu.met.cs665.beverage.tea;
 
 import edu.bu.met.cs665.beverage.Beverage;
 import edu.bu.met.cs665.condiment.Condiment;
+import edu.bu.met.cs665.condiment.Milk;
+import edu.bu.met.cs665.condiment.Sugar;
 import edu.bu.met.cs665.io.InputChoice;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -45,5 +48,10 @@ public class Tea implements Beverage, InputChoice {
   @Override
   public void addCondiment(Condiment condiment) {
     condiments.add(condiment);
+  }
+
+  @Override
+  public List<Condiment> getAddableCondiments() {
+    return Arrays.asList(new Milk(), new Sugar());
   }
 }

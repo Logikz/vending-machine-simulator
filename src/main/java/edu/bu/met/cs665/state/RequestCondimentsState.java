@@ -2,11 +2,10 @@ package edu.bu.met.cs665.state;
 
 import edu.bu.met.cs665.beverage.Beverage;
 import edu.bu.met.cs665.condiment.Condiment;
-import edu.bu.met.cs665.condiment.Milk;
-import edu.bu.met.cs665.condiment.Sugar;
 import edu.bu.met.cs665.condiment.Unit;
 import edu.bu.met.cs665.core.BrewerContext;
 import edu.bu.met.cs665.io.InputHandler;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -23,26 +22,18 @@ public class RequestCondimentsState implements State {
   @Override
   public void execute(BrewerContext context) {
     InputHandler inputHandler = context.getInputHandler();
-    Condiment milk = new Milk();
-    Condiment sugar = new Sugar();
+    Beverage beverage = context.getBeverage();
 
-
-    // Get milk
-    try {
-      requestCondimentUnits(context.getBeverage(), milk, inputHandler);
-    } catch (IllegalArgumentException e) {
-      context.setNextState(new ErrorState("Invalid input for milk.  Please try again."));
-      return;
+    List<Condiment> condiments = beverage.getAddableCondiments();
+    for (Condiment condiment : condiments) {
+      try {
+        requestCondimentUnits(beverage, condiment, inputHandler);
+      } catch (IllegalArgumentException e) {
+        context.setNextState(
+            new ErrorState("Invalid input for " + condiment.toString() + ".  Please try again."));
+        return;
+      }
     }
-
-    // Get sugar
-    try {
-      requestCondimentUnits(context.getBeverage(), sugar, inputHandler);
-    } catch (IllegalArgumentException e) {
-      context.setNextState(new ErrorState("Invalid input for sugar.  Please try again."));
-      return;
-    }
-
     context.setNextState(new BrewBeverageState());
   }
 

@@ -14,4 +14,6 @@ public interface Beverage {
   List<Condiment> getCondiments();
 
   void addCondiment(Condiment condiment);
+
+  List<Condiment> getAddableCondiments();
 }
