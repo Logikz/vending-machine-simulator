@@ -1,6 +1,6 @@
 package edu.bu.met.cs665.io;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,7 +17,7 @@ public class ConsoleInput implements InputHandler {
    * @return String of the choice.
    */
   @Override
-  public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+  public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
     // print out the question
     System.out.println(question);
 
@@ -54,7 +54,7 @@ public class ConsoleInput implements InputHandler {
    * @return String of their question
    */
   @Override
-  public String requestTextInput(String question) {
+  public String requestValueInput(String question) {
     Scanner scanner = new Scanner(System.in);
     System.out.println(question);
     return scanner.nextLine();

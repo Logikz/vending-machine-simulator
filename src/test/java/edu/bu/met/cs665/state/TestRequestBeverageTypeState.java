@@ -13,7 +13,7 @@ import edu.bu.met.cs665.beverage.tea.YellowTea;
 import edu.bu.met.cs665.core.BrewerContext;
 import edu.bu.met.cs665.io.InputChoice;
 import edu.bu.met.cs665.io.InputHandler;
-import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class TestRequestBeverageTypeState {
@@ -23,12 +23,12 @@ class TestRequestBeverageTypeState {
     // Set up the context for testing
     BrewerContext testContext = new BrewerContext(new InputHandler() {
       @Override
-      public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+      public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
         return choices.get(0);
       }
 
       @Override
-      public String requestTextInput(String question) {
+      public String requestValueInput(String question) {
         return null;
       }
     }, null);
@@ -43,12 +43,12 @@ class TestRequestBeverageTypeState {
 
     testContext = new BrewerContext(new InputHandler() {
       @Override
-      public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+      public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
         return choices.get(1);
       }
 
       @Override
-      public String requestTextInput(String question) {
+      public String requestValueInput(String question) {
         return null;
       }
     }, null);
@@ -62,12 +62,12 @@ class TestRequestBeverageTypeState {
 
     testContext = new BrewerContext(new InputHandler() {
       @Override
-      public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+      public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
         return choices.get(2);
       }
 
       @Override
-      public String requestTextInput(String question) {
+      public String requestValueInput(String question) {
         return null;
       }
     }, null);
@@ -85,12 +85,12 @@ class TestRequestBeverageTypeState {
     // Set up the context for testing
     BrewerContext testContext = new BrewerContext(new InputHandler() {
       @Override
-      public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+      public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
         return choices.get(0);
       }
 
       @Override
-      public String requestTextInput(String question) {
+      public String requestValueInput(String question) {
         return null;
       }
     }, null);
@@ -105,12 +105,12 @@ class TestRequestBeverageTypeState {
 
     testContext = new BrewerContext(new InputHandler() {
       @Override
-      public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+      public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
         return choices.get(1);
       }
 
       @Override
-      public String requestTextInput(String question) {
+      public String requestValueInput(String question) {
         return null;
       }
     }, null);
@@ -124,12 +124,12 @@ class TestRequestBeverageTypeState {
 
     testContext = new BrewerContext(new InputHandler() {
       @Override
-      public InputChoice requestMultipleChoice(String question, ArrayList<InputChoice> choices) {
+      public InputChoice requestMultipleChoice(String question, List<InputChoice> choices) {
         return choices.get(2);
       }
 
       @Override
-      public String requestTextInput(String question) {
+      public String requestValueInput(String question) {
         return null;
       }
     }, null);

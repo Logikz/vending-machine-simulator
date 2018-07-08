@@ -36,7 +36,7 @@ public class RequestCondimentsState implements State {
     // Get milk
     while (attempts < 3) {
       try {
-        String choice = inputHandler.requestTextInput(
+        String choice = inputHandler.requestValueInput(
             "How many units of milk would you like?\nUnits are " + unitString + " each. [0-3]");
         int units = Integer.parseInt(choice);
         if (units >= 0 && units <= milk.getMaxUnits()) {
@@ -58,7 +58,7 @@ public class RequestCondimentsState implements State {
     // Get sugar
     while (attempts < 3) {
       try {
-        String choice = inputHandler.requestTextInput(
+        String choice = inputHandler.requestValueInput(
             "How many units of sugar would you like?\nUnits are " + unitString + " each. [0-3]");
         int units = Integer.parseInt(choice);
         if (units >= 0 && units <= sugar.getMaxUnits()) {
