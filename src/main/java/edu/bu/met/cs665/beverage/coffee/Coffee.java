@@ -5,7 +5,6 @@ import edu.bu.met.cs665.condiment.Condiment;
 import edu.bu.met.cs665.io.InputChoice;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang.NotImplementedException;
 
 /**
  * Base class to contain any information pertaining to Coffee beverages.
@@ -35,7 +34,7 @@ public class Coffee implements Beverage, InputChoice {
 
   @Override
   public int getSlotID() {
-    throw new NotImplementedException();
+    throw new IllegalStateException();
   }
 
   @Override

@@ -1,5 +1,6 @@
 package edu.bu.met.cs665.state;
 
+import edu.bu.met.cs665.beverage.Beverage;
 import edu.bu.met.cs665.condiment.Condiment;
 import edu.bu.met.cs665.condiment.Milk;
 import edu.bu.met.cs665.condiment.Sugar;
@@ -22,9 +23,32 @@ public class RequestCondimentsState implements State {
   @Override
   public void execute(BrewerContext context) {
     InputHandler inputHandler = context.getInputHandler();
-    int attempts = 0;
     Condiment milk = new Milk();
     Condiment sugar = new Sugar();
+
+
+    // Get milk
+    try {
+      requestCondimentUnits(context.getBeverage(), milk, inputHandler);
+    } catch (IllegalArgumentException e) {
+      context.setNextState(new ErrorState("Invalid input for milk.  Please try again."));
+      return;
+    }
+
+    // Get sugar
+    try {
+      requestCondimentUnits(context.getBeverage(), sugar, inputHandler);
+    } catch (IllegalArgumentException e) {
+      context.setNextState(new ErrorState("Invalid input for sugar.  Please try again."));
+      return;
+    }
+
+    context.setNextState(new BrewBeverageState());
+  }
+
+  private void requestCondimentUnits(Beverage beverage, Condiment condiment,
+      InputHandler inputHandler) throws IllegalArgumentException {
+    int attempts = 0;
 
     Locale currentLocale = Locale.getDefault();
     String unitString = Unit.METRIC_UNIT.toString();
@@ -33,37 +57,16 @@ public class RequestCondimentsState implements State {
       unitString = Unit.IMPERIAL_UNIT.toString();
     }
 
-    // Get milk
-    while (attempts < 3) {
-      try {
-        String choice = inputHandler.requestValueInput(
-            "How many units of milk would you like?\nUnits are " + unitString + " each. [0-3]");
-        int units = Integer.parseInt(choice);
-        if (units >= 0 && units <= milk.getMaxUnits()) {
-          milk.setDispensingUnits(units);
-          context.getBeverage().addCondiment(milk);
-          break;
-        }
-        ++attempts;
-      } catch (NumberFormatException e) {
-        ++attempts;
-      }
-    }
-    if (attempts >= 3) {
-      context.setNextState(new ErrorState("Invalid input for milk.  Please try again."));
-      return;
-    }
-
-    attempts = 0;
     // Get sugar
     while (attempts < 3) {
       try {
         String choice = inputHandler.requestValueInput(
-            "How many units of sugar would you like?\nUnits are " + unitString + " each. [0-3]");
+            "How many units of " + condiment.toString() + " would you like?\nUnits are "
+                + unitString + " each. [0-3]");
         int units = Integer.parseInt(choice);
-        if (units >= 0 && units <= sugar.getMaxUnits()) {
-          sugar.setDispensingUnits(units);
-          context.getBeverage().addCondiment(sugar);
+        if (units >= 0 && units <= condiment.getMaxUnits()) {
+          condiment.setDispensingUnits(units);
+          beverage.addCondiment(condiment);
           break;
         }
         ++attempts;
@@ -72,10 +75,7 @@ public class RequestCondimentsState implements State {
       }
     }
     if (attempts >= 3) {
-      context.setNextState(new ErrorState("Invalid input for sugar.  Please try again."));
-      return;
+      throw new IllegalArgumentException("Max attempts exceeded");
     }
-
-    context.setNextState(new BrewBeverageState());
   }
 }
